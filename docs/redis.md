@@ -4,9 +4,29 @@
    由于redis的del命令不运行正则表达式，所以可以如下删除
    
     ```
-     keys * | xargs redis_cli del
-     eg:redis-cli KEYS "sample_pattern:*" | xargs redis-cli DEL
-    ```
+    redis-cli keys "*" | xargs redis-cli del    
+    //如果redis-cli没有设置成系统变量，需要指定redis-cli的完整路径     
+    //如：/opt/redis/redis-cli keys "*" | xargs /opt/redis/redis-cli del    
+    ``` 
+    
+   如果要指定 Redis 数据库访问密码，使用下面的命令
+   ```
+     redis-cli -a password keys "*" | xargs redis-cli -a password del   
+   ```
+   
+   如果要访问 Redis 中特定的数据库，使用下面的命令
+   //下面的命令指定数据序号为0，即默认数据库 
+   ```
+     redis-cli -n 0 keys "*" | xargs redis-cli -n 0 del   
+   ```
+   
+   删除所有Key，可以使用Redis的flushdb和flushall命令
+   ```
+     //删除当前数据库中的所有Key  
+     flushdb   
+     //删除所有数据库中的key   
+     flushall  
+   ```
 
 #### 1.2 方式二：
   ```
