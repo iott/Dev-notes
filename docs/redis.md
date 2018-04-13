@@ -2,11 +2,12 @@
   #### 1.1 方式一：
    管道命令和xargs的区别及redis批量删除命令  <br>
    由于redis的del命令不运行正则表达式，所以可以如下删除
+   
    ```
-    redis-cli keys "*" | xargs redis-cli del    
-    //如果redis-cli没有设置成系统变量，需要指定redis-cli的完整路径     
-   //如：/opt/redis/redis-cli keys "*" | xargs /opt/redis/redis-cli del    
-  ```
+    redis-cli keys "*" | xargs redis-cli del
+     //如果redis-cli没有设置成系统变量，需要指定redis-cli的完整路径     
+    //如：/opt/redis/redis-cli keys "*" | xargs /opt/redis/redis-cli del 
+   ```
   
    如果要指定 Redis 数据库访问密码，使用下面的命令
    ```
