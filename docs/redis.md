@@ -80,4 +80,9 @@ stream.on('end', function () {
 });
 
 ```
+### 2 redis常用命令
+- redis 配置密码
+打开配置文件如：/usr/local/etc/redis.conf  
+找到`#requirepass foobared`,将前面的注释解开或者重新添加一行，`requirepass 密码`，保存退出，然后重启服务。
+
  
