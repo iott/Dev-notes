@@ -129,3 +129,21 @@ select table_name, (data_length/1024/1024) as data_mb , (index_length/1024/1024)
 | ss_account                |    0.14062500 |  0.07812500 |    0.21875000 |       1871 |  
 +---------------------------+---------------+-------------+---------------+------------+  
 ```
+### 2.mysql cluster Horizontal sharding
+```
+var mysql = require('mysql');
+
+var connectionPool = {
+	server1: mysql.createPool({ host: '192.168.1.1' ... });
+	server2: mysql.createPool({ host: '192.168.1.2' ... });
+	server3: mysql.createPool({ host: '192.168.1.3' ... });
+	server4: mysql.createPool({ host: '192.168.1.4' ... });	
+};
+
+var serverId = 'server' + (userId % 4); 
+
+connectionPool[serverId].getConnection(function(err, connection) {
+   // execute query
+   connection.release();
+});
+```
