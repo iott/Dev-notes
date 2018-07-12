@@ -147,3 +147,7 @@ connectionPool[serverId].getConnection(function(err, connection) {
    connection.release();
 });
 ```
+### 3.查看添加索引的必要性
+```
+select count(distinct `location`)/ count(*) from plot;
+```
